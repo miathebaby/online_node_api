@@ -58,6 +58,7 @@ typings/
 .env
 
 # Credentials / secrets
+secrets/
 google_key.json
 
 # next.js build output
