@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "nodemon ./bin/www",
-    "preinstall": "npm install -g pm2",
     "start": "node ./bin/www"
   },
   "dependencies": {
