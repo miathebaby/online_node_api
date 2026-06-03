@@ -15,6 +15,7 @@ const userRouter = require('./routes/users');
 const companyRouter = require('./routes/company');
 const staffRouter = require('./routes/staff');
 const shopRouter = require('./routes/shop');
+const guestRouter = require('./routes/guest');
 
 const errorHandler = require('./middleware/errorHandler');
 
@@ -29,6 +30,7 @@ app.use(cors());
 //Block rate limit ไม่ให้มีการส่ง request มากกว่า 5 ครั้งต่อ 10 วินาที
 app.set('trust proxy', 1);
 
+//จำกัดจำนวน Request ที่ส่งมาจาก IP เดียวกัน
 const limiter = rateLimit({
     windowMs: 10 * 1000, // 15 seconds
     limit: 5, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
@@ -64,6 +66,7 @@ app.use('/user', userRouter);
 app.use('/company', [passportJWT.isLoging, checkAdmin.isAdmin], companyRouter);
 app.use('/staff', [passportJWT.isLoging], staffRouter);
 app.use('/shop', shopRouter);
+app.use('/guest', guestRouter);
 app.use(errorHandler);
 
 module.exports = app;
